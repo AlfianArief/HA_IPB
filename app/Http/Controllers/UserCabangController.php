@@ -144,4 +144,5 @@ class UserCabangController extends Controller
                     'users.email')->get();
         return view('dashboard.admin.postcabang.admincabanghimpunan', compact('admincabang'));
     }
+
 }

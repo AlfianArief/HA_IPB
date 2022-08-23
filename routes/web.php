@@ -71,7 +71,8 @@ Route::prefix('admin')->name('admin.')->group(function(){
         Route::post('/admincabanghimpunan/{id}','\App\Http\Controllers\UserCabangController@admincabang' )->name('admincabanghimpunan');
 
         Route::resource('admin/postcabang', '\App\Http\Controllers\CabangController');
-        
+
+        Route::resource('/pengumuman', '\App\Http\Controllers\PengumumanController');
     });
 });
 

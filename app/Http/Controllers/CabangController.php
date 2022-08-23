@@ -70,10 +70,6 @@ class CabangController extends Controller
     public function show($id)
     {
         $daftarcabang = Cabang::where('id', $id)->get();
-            
-
-        //$listcabang = DB::table('usercabangs')->join('cabangs','usercabangs.id_cabang','=','cabangs.id')
-                    //->where('id_cabang', $id)->first();
                     
         $anggotacabang = UserCabang::where('id_cabang', $id)->count();
       

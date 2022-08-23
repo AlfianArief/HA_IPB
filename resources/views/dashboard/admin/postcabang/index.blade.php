@@ -12,7 +12,7 @@
 @endif
 
 
-  <a class="btn btn-primary mb-2 mx-4 justify-content-end " href="{{ route('admin.postcabang.create')}}" role="button">Tambah Cabang</a>
+  <a class="btn btn-primary mb-2 mx-4 justify-content-end " href="{{ route('admin.postcabang.create')}}" role="button"><i class="fa fa-plus" aria-hidden="true"> Cabang</a></i>
 
 
 @foreach ($daftar_cabang as $cabang)

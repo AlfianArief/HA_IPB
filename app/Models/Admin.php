@@ -52,4 +52,8 @@ class Admin extends Authenticatable
     public function cabang(){
         return $this->hasMany(Cabang::class);
     }
+
+    public function pengumuman(){
+        return $this->hasMany(Pengumuman::class);
+    }
 }
