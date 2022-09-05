@@ -7,6 +7,7 @@ use App\Models\Pengumuman;
 use App\Models\Cabang;
 use App\Models\UserCabang;
 use App\Models\Admin;
+use Illuminate\Support\Facades\DB;
 
 class PengumumanController extends Controller
 {
@@ -19,8 +20,11 @@ class PengumumanController extends Controller
     {
         $daftarpengumuman = Pengumuman::all();
         $datacabang = Cabang::all()->count();
-        $dataanggota = UserCabang::count('id_users');
-        //return $daftarpengumuman;
+        $dataanggota = UserCabang::where('status','=', 1)->count();
+                        
+                        
+        //return $dataanggota;
+        //return $daftarcabang;
         return view('dashboard.admin.dashboard', compact('daftarpengumuman','datacabang','dataanggota'));
     }
 
@@ -88,7 +92,20 @@ class PengumumanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'judul' => 'required',
+            'deskripsi' => 'required',
+        ]);
+        
+        
+        Pengumuman::where('id', $id)
+            ->update([
+                'judul' => $request->input('judul'),
+                'deskripsi' => $request->input('deskripsi'),
+                'admin_id' => auth()->user()->id,
+            ]);
+      
+        return redirect()->route('admin.pengumuman.index')->with('status', 'Cabang telah diupdate');
     }
 
     /**

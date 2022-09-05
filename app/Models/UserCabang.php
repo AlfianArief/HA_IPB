@@ -17,10 +17,10 @@ class UserCabang extends Model
     ];
 
     public function cabang(){
-        return $this->belongsToMany(Cabang::class);
+        return $this->belongsTo(Cabang::class);
     }
 
     public function user(){
-        return $this->belongsToMany(User::class);
+        return $this->belongsTo(User::class);
     }
 }

@@ -14,16 +14,16 @@
 @endif
 
 
-@foreach ($cabang as $listcabang)
 
-  <div class="card mt-2 mx-4" style="width: 95%;">
-    <div class="card-body">
-      <h5 class="card-title fw-bold">{{ $listcabang->judul }}</h5>
-      <p class="card-text">{{ $listcabang->ketua }}</p>
-      <p class="card-text">{{ $listcabang->alamat }}</p>
-      <p class="card-text">{{ $listcabang->deskripsi }}</p>
-      <div class="d-flex flex-row-reverse container">
-          <form method="POST" action="{{route('user.store')}}">
+  @foreach ($cabang as $listcabang) 
+    <div class="card mt-2 mx-4" style="width: 95%;">
+      <div class="card-body">
+        <h5 class="card-title fw-bold">{{ $listcabang->judul }}</h5>
+        <p class="card-text">{{ $listcabang->ketua }}</p>
+        <p class="card-text">{{ $listcabang->alamat }}</p>
+        <p class="card-text">{{ $listcabang->deskripsi }}</p>
+        <div class="d-flex flex-row-reverse container">
+        <form method="POST" action="{{route('user.store')}}">
             @csrf
                 <button class="btn btn-primary rounded" type="submit">Masuk</button>
                 <div class="form-group">
@@ -33,7 +33,6 @@
         </div>
     </div>
   </div>
-
-@endforeach
+  @endforeach
 
 @endsection

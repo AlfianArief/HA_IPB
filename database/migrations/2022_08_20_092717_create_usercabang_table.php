@@ -19,10 +19,11 @@ class CreateUserCabangTable extends Migration
             $table->timestamps();
             $table->unsignedBigInteger('id_cabang');
             $table->unsignedBigInteger('id_users');    
+            $table->boolean('status')->default(1);
 
 
-           $table->foreign('id_cabang')->references('id')->on('cabangs');
-           $table->foreign('id_users')->references('id')->on('users');
+           $table->foreign('id_cabang')->references('id')->on('cabangs')->onDelete('cascade');
+           $table->foreign('id_users')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -33,6 +34,6 @@ class CreateUserCabangTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('usercabang');
+        Schema::dropIfExists('usercabangs');
     }
 }

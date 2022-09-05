@@ -12,7 +12,7 @@
 @endif
 
 
-  <a class="btn btn-primary mb-2 mx-4 justify-content-end " href="{{ route('admin.postcabang.create')}}" role="button"><i class="fa fa-plus" aria-hidden="true"> Cabang</a></i>
+  <a class="btn btn-success mb-2 mx-4 justify-content-end " href="{{ route('admin.postcabang.create')}}" role="button"><i class="fa fa-plus" aria-hidden="true"> Cabang</a></i>
 
 
 @foreach ($daftar_cabang as $cabang)
@@ -23,32 +23,27 @@
       <p class="card-text">Ketua cabang : {{ $cabang->ketua }}</p>
       <p class="card-text">Alamat : {{ $cabang->alamat }}</p>
       <p class="card-text">{{ $cabang->deskripsi }}</p>
-      <div class="d-flex flex-row-reverse">
+
           <form method="POST" action="admin/admincabanghimpunan/{{ $cabang->id }}">
             @csrf
-                <button class="btn btn-primary rounded mx-2" type="submit">Masuk</button>
+                <button class="btn btn-primary rounded mx-2 float-right" type="submit"><i class="bi bi-box-arrow-in-right"></i> Masuk</button>
           </form>
 
           <form method="GET" action="admin/admin/postcabang/{{ $cabang->id }}/edit">
             @csrf
-                <button class="btn btn-success rounded mx-2" type="submit">Edit</button>
+                <button class="btn btn-warning rounded mx-2 float-right" type="submit"><i class="bi bi-pencil-square"></i> Edit</button>
           </form>
 
           <form method="GET" action="admin/admin/postcabang/{{ $cabang->id }}">
             @csrf
-                <button class="btn btn-secondary rounded mx-2" type="submit">Detail</button>
+                <button class="btn btn-secondary rounded mx-2 float-right" type="submit"><i class="fa fa-info-circle" aria-hidden="true"></i> Detail</button>
           </form>
 
-          <form method="POST" action="admin/admin/postcabang/{{$cabang->id}}">
-            @csrf
-            @method ('delete')
-
-                <button class="btn btn-danger rounded mx-2" type="delete">Non-Aktif</button>
-          </form>
+          
         </div>
     </div>
-  </div>
 
+    
 @endforeach
 
 @endsection

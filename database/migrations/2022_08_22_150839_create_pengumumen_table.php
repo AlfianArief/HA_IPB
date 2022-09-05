@@ -20,7 +20,7 @@ class CreatePengumumenTable extends Migration
             $table->timestamps();
             $table->unsignedBigInteger('admin_id');
 
-            $table->foreign('admin_id')->references('id')->on('admins');
+            $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
         });
     }
 

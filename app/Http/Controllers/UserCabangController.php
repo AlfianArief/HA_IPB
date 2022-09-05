@@ -23,18 +23,22 @@ class UserCabangController extends Controller
         $cabang = DB::table('cabangs')->join('admins','cabangs.admin_id','=','admins.id')
             ->select('cabangs.id','cabangs.updated_at','cabangs.judul','cabangs.deskripsi', 'cabangs.ketua', 'cabangs.alamat')->orderby('id','desc')->get();
 
-        $user_id =  Auth::user()->id;    
+        $user_id =  Auth::user()->id;          
+
         $check = DB::table('usercabangs')
-            ->where('usercabangs.id_users', $user_id)->get();
+            ->where('usercabangs.id_users', $user_id)
+            ->get();
         
             if(count($check)){
 
-            $cabang = DB::table('cabangs')->join('admins','cabangs.admin_id','=','admins.id')->join('usercabangs', 'cabangs.id', '=', 'usercabangs.id_cabang')
-                ->where('usercabangs.id_users', $user_id)
-                ->select('cabangs.id','cabangs.updated_at','cabangs.judul','cabangs.deskripsi', 'cabangs.ketua', 'cabangs.alamat')->orderby('id','desc')->get();             
+                $cabang = DB::table('cabangs')
+                        ->join('admins','cabangs.admin_id','=','admins.id')
+                        ->join('usercabangs', 'cabangs.id', '=', 'usercabangs.id_cabang')
+                        ->where('usercabangs.id_users', $user_id)->where('usercabangs.status', 1)
+                
+                        ->select('cabangs.id','cabangs.updated_at','cabangs.judul','cabangs.deskripsi', 'cabangs.ketua', 'cabangs.alamat', 'usercabangs.status')->orderby('id','desc')->get();    
             }
             
-
             return view('dashboard.user.cabanguser', compact('cabang'));
             //return $check;
         
@@ -120,12 +124,12 @@ class UserCabangController extends Controller
 
     public function cabang($id)
     {
-
+        //$usercabang = DB::table('usercabangs')->paginate(5);
         $usercabang = DB::table('usercabangs')->where('usercabangs.id_cabang', $id)
                     ->join('users', 'usercabangs.id_users', '=', 'users.id')
 
                     ->select('usercabangs.id', 'usercabangs.created_at', 'users.name',
-                    'users.email')->get();
+                    'users.email')->paginate(5);
         
         return view('dashboard.user.cabanghimpunan', compact('usercabang'));
 
@@ -145,4 +149,52 @@ class UserCabangController extends Controller
         return view('dashboard.admin.postcabang.admincabanghimpunan', compact('admincabang'));
     }
 
+    public function list()
+    {
+        $listanggota = DB::table('usercabangs')
+                    ->where('usercabangs.status', 1)
+                    ->join('users', 'usercabangs.id_users', '=', 'users.id')
+                    ->join('cabangs','usercabangs.id_cabang','=','cabangs.id')
+
+                    ->select('usercabangs.id', 'usercabangs.created_at', 'users.name', 'cabangs.judul',
+                    'users.email')->get();
+        return view('dashboard.admin.anggota.list', compact('listanggota'));
+    }
+
+    public function mutasi($id)
+    {
+        $editanggota = UserCabang::where('usercabangs.id', $id)
+                    ->join('users', 'usercabangs.id_users', '=', 'users.id')
+                    ->join('cabangs','usercabangs.id_cabang','=','cabangs.id')
+
+                    ->select('usercabangs.id', 'usercabangs.created_at', 'users.name','usercabangs.id_cabang', 'cabangs.judul',
+                    'users.email')->get();
+
+        $listcabang = Cabang::all(); 
+        return view('dashboard.admin.anggota.mutasi', compact('editanggota','listcabang'));
+    }
+
+    public function updateanggota(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'cabang' => 'required|numeric',
+        ]);
+
+        $cabanglama = Usercabang::where('id', $id)
+                ->select('status', 1);
+                
+        $cabanglama->update([
+            'status' => false,
+        ]);
+
+        UserCabang::where('id', $id)
+        ->create([
+            'id_cabang' => $request->input('cabang'),
+            'id_users' => Auth::user()->id,
+            'aktif' => true,
+        ]);
+
+        return redirect()->route('admin.list')->with('success', 'Anggota telah dimutasi');
+       
+    }
 }

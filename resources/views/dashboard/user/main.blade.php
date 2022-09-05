@@ -64,7 +64,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
             <li class="nav-item">
-            <a href="{{ route('user.dashboard') }}" class="nav-link">
+            <a href="{{ route('user.history') }}" class="nav-link">
               <i class="nav-icon fas fa-home"></i>
               <p>
               Dashboard
@@ -125,6 +125,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+
 <script src="{{ asset('plugins/ijaboCropTool/ijaboCropTool.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
@@ -158,6 +161,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
      });
 
 </script>
+
+
 
 </body>
 </html>

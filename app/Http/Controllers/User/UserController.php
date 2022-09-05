@@ -10,6 +10,7 @@ use App\Http\Requests\ChangePasswordRequest;
 use Hash;
 use Illuminate\Support\Facades\File;
 use App\Models\Education;
+use App\Http\Controllers\User\UserCabang;
 use Illuminate\Support\Facades\DB;
 
 
@@ -39,8 +40,11 @@ class UserController extends Controller
         $user->password = \Hash::make($request->password);
         $save = $user->save();
 
+        $education = new Education();
+        $education->user_id = $user->id;
+        $save1 = $education->save();
 
-        if( $save ){
+        if( $save && $save1 ){
             return redirect()->route('user.login')->with('success','You are now registered successfully');
         } else{
             return redirect()->back()->with('fail', 'Something went wrong, failed to register');
@@ -61,7 +65,7 @@ class UserController extends Controller
         if( Auth::guard('web')->attempt($creds) ){
             return redirect()->route('user.home');
         }else{
-            return redirect()->route('user.login')->with('fail','Incorrect credentials');
+            return redirect()->route('user.login')->with('fail','Password Salah');
         }
     }
 
@@ -157,9 +161,7 @@ class UserController extends Controller
                     'NIM' => $request->input('NIM'),
                 ]);
 
-        
-
-        //$education->update();
+    
 
         return redirect()->back()->with('status','Profil sudah di perbaharui');
         

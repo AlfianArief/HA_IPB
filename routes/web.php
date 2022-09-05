@@ -42,7 +42,7 @@ Auth::routes();
 
     Route::middleware(['auth:web','PreventBackHistory'])->group(function(){
         Route::view('/home','dashboard.user.home')->name('home');
-        Route::view('/welcome','dashboard.user.dashboard')->name('dashboard');
+        //Route::view('/welcome','dashboard.user.dashboard')->name('dashboard');
         Route::get('/profile','\App\Http\Controllers\User\UserController@profile')->name('profile');
         Route::post('/logout',[UserController::class,'logout'])->name('logout');
 
@@ -54,6 +54,8 @@ Auth::routes();
         Route::get('cabang/{id}', '\App\Http\Controllers\UserCabangController@cabang')->name('cabang');
 
         Route::resource('/', '\App\Http\Controllers\UserCabangController');
+
+        Route::get('/dashboard', '\App\Http\Controllers\DashboardUserController@history')->name('history');
     });
 });
 
@@ -67,12 +69,16 @@ Route::prefix('admin')->name('admin.')->group(function(){
     Route::middleware(['auth:admin','PreventBackHistory'])->group(function(){
         Route::view('/home','dashboard.admin.home')->name('home');
         Route::post('/logout',[AdminController::class,'logout'])->name('logout');
-        Route::view('/welcome','dashboard.admin.dashboard')->name('dashboard');
+        //Route::view('/welcome','dashboard.admin.dashboard')->name('dashboard');
         Route::post('/admincabanghimpunan/{id}','\App\Http\Controllers\UserCabangController@admincabang' )->name('admincabanghimpunan');
 
         Route::resource('admin/postcabang', '\App\Http\Controllers\CabangController');
 
         Route::resource('/pengumuman', '\App\Http\Controllers\PengumumanController');
+
+        Route::get('/anggota','\App\Http\Controllers\UserCabangController@list')->name('list');
+        Route::get('/mutasi/{id}', '\App\Http\Controllers\UserCabangController@mutasi')->name('mutasi');
+        Route::put('/mutasi/{id}', '\App\Http\Controllers\UserCabangController@updateanggota')->name('update');
     });
 });
 
