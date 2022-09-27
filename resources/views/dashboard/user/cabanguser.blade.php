@@ -18,7 +18,7 @@
   @foreach ($cabang as $listcabang) 
     <div class="card mt-2 mx-4" style="width: 95%;">
       <div class="card-body">
-        <h5 class="card-title fw-bold">{{ $listcabang->judul }}</h5>
+        <b><h5 class="card-title fw-bold">{{ $listcabang->judul }}</b></h5>
         <p class="card-text">{{ $listcabang->ketua }}</p>
         <p class="card-text">{{ $listcabang->alamat }}</p>
         <p class="card-text">{{ $listcabang->deskripsi }}</p>

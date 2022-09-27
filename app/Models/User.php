@@ -68,4 +68,12 @@ class User extends Authenticatable
     public function education(){
         return $this->hasOne(Education::class);
     }
+
+    public function job(){
+        return $this->hasOne(Job::class);
+    }
+
+    public function organization(){
+        return $this->hasOne(Organization::class);
+    }
 }

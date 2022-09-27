@@ -127,9 +127,10 @@ class UserCabangController extends Controller
         //$usercabang = DB::table('usercabangs')->paginate(5);
         $usercabang = DB::table('usercabangs')->where('usercabangs.id_cabang', $id)
                     ->join('users', 'usercabangs.id_users', '=', 'users.id')
+                    ->join('educations','users.id','=','educations.user_id')
 
-                    ->select('usercabangs.id', 'usercabangs.created_at', 'users.name',
-                    'users.email')->paginate(5);
+                    ->select('usercabangs.id', 'usercabangs.created_at','usercabangs.status', 'users.name',
+                    'users.email', 'users.nomortelfon','educations.angkatan')->paginate(5);
         
         return view('dashboard.user.cabanghimpunan', compact('usercabang'));
 
@@ -143,9 +144,10 @@ class UserCabangController extends Controller
     {
         $admincabang = DB::table('usercabangs')->where('usercabangs.id_cabang', $id)
                     ->join('users', 'usercabangs.id_users', '=', 'users.id')
+                    ->join('educations', 'users.id','=','educations.user_id')
 
-                    ->select('usercabangs.id', 'usercabangs.created_at', 'users.name',
-                    'users.email')->get();
+                    ->select('usercabangs.id', 'usercabangs.created_at','usercabangs.status', 'users.name',
+                    'users.email', 'users.nomortelfon', 'educations.angkatan')->get();
         return view('dashboard.admin.postcabang.admincabanghimpunan', compact('admincabang'));
     }
 
@@ -187,10 +189,9 @@ class UserCabangController extends Controller
             'status' => false,
         ]);
 
-        UserCabang::where('id', $id)
-        ->create([
+        UserCabang::create([
             'id_cabang' => $request->input('cabang'),
-            'id_users' => Auth::user()->id,
+            'id_users' => $id,
             'aktif' => true,
         ]);
 

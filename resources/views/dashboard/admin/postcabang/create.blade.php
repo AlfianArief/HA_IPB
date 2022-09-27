@@ -52,6 +52,8 @@
             <div class="position-relative">
                 <button type="submit" class="btn btn-primary position-absolute top-50 end-0 translate-middle-y mt-2">Simpan</button>
             </div>
+
+            <a class="btn btn-success my-2 mx-4 justify-content-end " href="admin/admin/postcabang" role="button"><i class="bi bi-box-arrow-left"></i> Kembali</a>
         </form>
     </div>
 

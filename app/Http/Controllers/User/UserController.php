@@ -10,8 +10,12 @@ use App\Http\Requests\ChangePasswordRequest;
 use Hash;
 use Illuminate\Support\Facades\File;
 use App\Models\Education;
+use App\Models\Job;
+use App\Models\Organization;
 use App\Http\Controllers\User\UserCabang;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;    
 
 
 class UserController extends Controller
@@ -20,7 +24,9 @@ class UserController extends Controller
     {
         $user_id =  Auth::user()->id;
         $education = Education::where('user_id', $user_id)->first();
-        return view('dashboard.user.profile', compact('education'));
+        $job = Job::where('user_id', $user_id)->first();
+        $org = Organization::where('user_id', $user_id)->first();
+        return view('dashboard.user.profile', compact('education','job','org'));
     }
 
 
@@ -44,7 +50,15 @@ class UserController extends Controller
         $education->user_id = $user->id;
         $save1 = $education->save();
 
-        if( $save && $save1 ){
+        $job = new Job();
+        $job->user_id = $user->id;
+        $save2 = $job->save();
+
+        $org = new Organization();
+        $org->user_id = $user->id;
+        $save3 = $org->save();
+
+        if( $save && $save1 && $save2 && $save3){
             return redirect()->route('user.login')->with('success','You are now registered successfully');
         } else{
             return redirect()->back()->with('fail', 'Something went wrong, failed to register');
@@ -72,6 +86,70 @@ class UserController extends Controller
     function logout(){
         Auth::guard('web')->logout();
         return redirect('/');
+    }
+
+    public function showforgotform()
+    {
+        return view('dashboard.user.forgot.forgotform');
+    }
+
+    public function sendResetLink(Request $request)
+    {
+        $request->validate([
+            'email'=>'required|email|exists:users,email'
+        ]);
+
+        $token = \Str::random(64);
+        \DB::table('password_resets')->insert([
+            'email' => $request->email,
+            'token' => $token,
+            'created_at' => Carbon::now(),
+        ]);
+
+        $action_link = route('user.resetpasswordform',['token'=>$token, 'email'=>$request->email]);
+        $body = "We are received a request to reset the password <b>HA IPB</b> account associated with ".$request->email.". You can reset your password by clicking the link below:";
+
+        \Mail::send('email-forgot', ['action_link'=>$action_link,'body'=>$body], function($message) use($request){
+            $message->from('noreply@example.com','HA IPB');
+            $message->to($request->email,'Your Name')
+                    ->subject('Reset Password');
+        });
+
+        return back()->with('success', 'Link untuk reset password telah dikirim ke email!');
+
+    }
+
+    public function showresetform(Request $request, $token = null)
+    {
+        return view('dashboard.user.forgot.reset')->with(['token'=>$token, 'email'=>$request->email]);
+    }
+
+    public function resetpassword(Request $request)
+    {
+        $request->validate([
+            'email'=>'required|email|exists:users,email',
+            'password'=>'required|min:6',
+            'cpassword'=>'required|same:password',
+        ]);
+
+        $check_token = DB::table('password_resets')->where([
+            'email'=>$request->email,
+            'token'=>$request->token,
+        ])->first();
+
+        if(!$check_token){
+            return back()->withInput()->with('fail', 'invalid token');
+        } else {
+            User::where('email', $request->email)->update([
+                'password'=> \Hash::make($request->password)
+            ]);
+
+            DB::table('password_resets')->where([
+                'email'=>$request->email
+            ])->delete();
+
+            return redirect()->route('user.login')->with('info', 'Password anda telah direset! Silahkan login menggunakan password baru');
+        }
     }
 
     public function profileupdate(Request $request)
@@ -117,7 +195,8 @@ class UserController extends Controller
         }
     }
 
-    public function changePicture(Request $request){
+    public function changePicture(Request $request)
+    {
         
         $path = 'users/images/';
         $file = $request->file('user_image');
@@ -166,4 +245,35 @@ class UserController extends Controller
         return redirect()->back()->with('status','Profil sudah di perbaharui');
         
     }
+
+    public function organizationupdate(Request $request)
+    {
+        $user_id =  Auth::user()->id;
+        Organization::where('user_id', $user_id)
+                ->update([
+                    'organisasi' => $request->input('organisasi'),
+                    'jabatan' => $request->input('jabatan'),
+                    'tanggal_masuk' => $request->input('tanggal_masuk'),
+                ]);
+
+
+        return redirect()->back()->with('status','Profil sudah di perbaharui');
+    }
+
+    public function jobupdate(Request $request)
+    {
+        $user_id =  Auth::user()->id;
+        Job::where('user_id', $user_id)
+                ->update([
+                    'pekerjaan' => $request->input('pekerjaan'),
+                    'nama_p' => $request->input('nama_p'),
+                    'alamat_p' => $request->input('alamat_p'),
+                    'jabatan' => $request->input('jabatan'),
+                    'produk' => $request->input('produk'),
+                ]);
+
+
+        return redirect()->back()->with('status','Profil sudah di perbaharui');
+    }
+
 }

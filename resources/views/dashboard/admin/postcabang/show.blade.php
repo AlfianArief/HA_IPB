@@ -3,32 +3,46 @@
 
 @section('content')
 
-<div class="box">
-  <table class="table table-striped container">
-    <thead>
-      <tr>
-        <th scope="col">judul</th>
-        <th scope="col">ketua</th>
-        <th scope="col">alamat</th>
-        <th scope="col">deskripsi</th>
-        <th scope="col">Jumlah anggota</th>
-      </tr>
-    </thead>
-    <tbody>
-    @foreach ($daftarcabang as $cabang)
-      <tr>
-        <td>{{$cabang->judul}}</td>
-        <td>{{$cabang->ketua}}</td>
-        <td>{{$cabang->alamat}}</td>
-        <td>{{$cabang->deskripsi}}</td>
-        <td>{{ $anggotacabang }}</td>
-      </tr>
-      @endforeach
 
-     
+  @foreach ($daftarcabang as $cabang)
+          <div class="card-body">
+            <table class="table table-bordered">
+              <tbody>
+                <tr>
+                  <td>1.</td>
+                  <td>Judul</td>
+                  <td>{{$cabang->judul}}</td>
+                </tr>
+                <tr>
+                  <td>2.</td>
+                  <td>Ketua</td>
+                  <td>{{$cabang->ketua}}</td>
+                </tr>
+                <tr>
+                  <td>3.</td>
+                  <td>Alamat</td>
+                  <td>{{$cabang->alamat}}</td>
+                </tr>
+                <tr>
+                  <td>4.</td>
+                  <td>Deskripsi</td>
+                  <td>{{$cabang->deskripsi}}</td>
+                </tr>
+                <tr>
+                  <td>5.</td>
+                  <td>Jumlah Anggota</td>
+                  <td>{{ $anggotacabang }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+       
+    <a class="btn btn-success my-2 mx-4 float-right" href="admin/admin/postcabang" role="button">Kembali</a>
+  @endforeach
 
-    </tbody> 
-  </table>
-</div>
+
+
+
+
 
 @endsection

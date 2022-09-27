@@ -52,6 +52,8 @@
                   <ul class="nav nav-pills">
                     <li class="nav-item"><a class="nav-link active" href="#personal_info" data-toggle="tab">Informasi Pribadi</a></li>
                     <li class="nav-item"><a class="nav-link" href="#pendidikan" data-toggle="tab">Riwayat Pendidikan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#pekerjaan" data-toggle="tab">Pekerjaan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#organisasi" data-toggle="tab">Organisasi</a></li>
                     <li class="nav-item"><a class="nav-link" href="#change_password" data-toggle="tab">Ganti Password</a></li>                    
                   </ul>
                 </div><!-- /.card-header -->
@@ -221,6 +223,82 @@
                         </div>
                       </form>
                     </div>
+
+                    <div class="tab-pane" id="pekerjaan">
+                      <form class="form-horizontal" method="POST" action="user/job">
+                        {{  csrf_field() }}
+
+
+                        <div class="form-group row">
+                          <label for="inputPekerjaan" class="col-sm-2 col-form-label">Pekerjaan</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputPekerjaan" placeholder="*Contoh : PNS" value="{{ $job->pekerjaan }}" name="pekerjaan">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="inputNama_p" class="col-sm-2 col-form-label mb-3">Nama Perusahaan</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" placeholder="Nama Perusahaan" value="{{ $job->nama_p }}" name="nama_p">                            
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="inputAlamat_p" class="col-sm-2 col-form-label">Alamat Perusahaan</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control"  placeholder="Alamat Perusahaan" value="{{ $job->alamat_p }}" name="alamat_p">                            
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="inputJabatan" class="col-sm-2 col-form-label">Jabatan</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" placeholder="Jabatan" value="{{ $job->jabatan }}" name="jabatan">                            
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="inputProduk" class="col-sm-2 col-form-label">Produk tempat kerja</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" placeholder="*Contoh : Jasa, Barang" value="{{ $job->produk }}" name="produk">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="offset-sm-2 col-sm-10">
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+
+                    
+                    <div class="tab-pane" id="organisasi">
+                      <form class="form-horizontal" method="POST" action="user/organization">
+                        {{  csrf_field() }}
+
+
+                        <div class="form-group row">
+                          <label for="inputOrganisasi" class="col-sm-2 col-form-label">Organisasi</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" placeholder="Nama Organisasi" value="{{ $org->organisasi }}" name="organisasi">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="inputJabatan" class="col-sm-2 col-form-label mb-3">Jabatan</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" placeholder="Jabatan" value="{{ $org->jabatan }}" name="jabatan">                            
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="inputTanggal_masuk" class="col-sm-2 col-form-label">Tanggal Masuk</label>
+                          <div class="col-sm-10">
+                            <input type="date" class="form-control"  placeholder="Tanggal Masuk" value="{{ $org->tanggal_masuk }}" name="tanggal_masuk">                            
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="offset-sm-2 col-sm-10">
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+
 
                     <!-- /.tab-pane -->
                     <div class="tab-pane" id="change_password">

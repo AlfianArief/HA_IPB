@@ -1,5 +1,5 @@
 @extends('dashboard.user.main')
-@section('title','Dashboard')
+@section('title','Welcome')
 
 @section('content')
 

@@ -38,6 +38,11 @@ Auth::routes();
         Route::view('/register','dashboard.user.register')->name('register');
         Route::post('/create',[UserController::class,'create'])->name('create');
         Route::post('/check',[UserController::class,'check'])->name('check');
+
+        Route::get('/password/forgot', '\App\Http\Controllers\User\UserController@showforgotform')->name('formforgot');
+        Route::post('/password/forgot', '\App\Http\Controllers\User\UserController@sendResetLink')->name('formresetlink');
+        Route::get('/password/reset/{token}', '\App\Http\Controllers\User\UserController@showresetform')->name('resetpasswordform');
+        Route::post('/password/reset', '\App\Http\Controllers\User\UserController@resetpassword')->name('resetpassword');
     });
 
     Route::middleware(['auth:web','PreventBackHistory'])->group(function(){
@@ -50,6 +55,8 @@ Auth::routes();
         Route::post('/change-password',[UserController::class,'changePassword'])->name('change-password');
         Route::post('change-profile-picture',[UserController::class,'changePicture'])->name('change-profile-picture');
         Route::post('/education','\App\Http\Controllers\User\UserController@educationupdate')->name('education');
+        Route::post('/job','\App\Http\Controllers\User\UserController@jobupdate')->name('job');
+        Route::post('/organization','\App\Http\Controllers\User\UserController@organizationupdate')->name('organization');
 
         Route::get('cabang/{id}', '\App\Http\Controllers\UserCabangController@cabang')->name('cabang');
 

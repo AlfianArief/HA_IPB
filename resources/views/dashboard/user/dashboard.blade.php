@@ -9,7 +9,7 @@
 
 <!-- Informasi Cabang -->
 <div class="card mx-4" style="max-width: 90%;">
-  <h5 class="card-header fw-bold">Informasi Cabang</h5>
+  <b><h5 class="card-header">Informasi Cabang</h5></b>
   <div class="card-body">
     <div class="container overflow-hidden">
     @if (count($historyanggota)=== 0) Belum terdaftar di cabang manapun @else

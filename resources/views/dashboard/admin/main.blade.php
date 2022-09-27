@@ -47,7 +47,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="{{ \URL::to('/') }}" class="brand-link">
+    <a href="{{ \URL::to('admin/pengumuman') }}" class="brand-link">
       <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">Himpunan Alumni IPB</span>
     </a>
@@ -60,7 +60,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <img src="{{ Auth::user()->picture }}" class="img-circle elevation-2 admin_picture" alt="User Image">
         </div>
         <div class="info">
-          <a href="" class="d-block">{{ Auth::user()->name }}</a>
+          <a class="d-block">{{ Auth::user()->name }}</a>
         </div>
       </div>
 

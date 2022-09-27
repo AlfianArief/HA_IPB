@@ -17,8 +17,8 @@ class CreateUserCabangTable extends Migration
 
             $table->id();
             $table->timestamps();
-            $table->unsignedBigInteger('id_cabang');
-            $table->unsignedBigInteger('id_users');    
+            $table->unsignedBigInteger('id_cabang')->nullable();
+            $table->unsignedBigInteger('id_users')->nullable(); 
             $table->boolean('status')->default(1);
 
 

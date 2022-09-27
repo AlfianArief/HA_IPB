@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Admin Log in</title>
+  <title>Lupa Password</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -17,47 +17,46 @@
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
-  <div class="login-logo">
-    <b>HIMPUNAN ALUMNI</b>IPB
+  <div class="login-logo border-bottom">
+    <b>LUPA PASSWORD</b>
   </div>
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
-      <p class="login-box-msg">Silahkan login terlebih dahulu</p>
+      <form action="{{ route('user.formresetlink') }}" method="post" autocomplete="off">
+        @if(Session::get('fail'))
+            <div class="alert alert-danger">
+                {{ Session::get('fail') }}
+            </div>
+        @endif
 
-      <form action="{{ route('admin.check') }}" method="post">
-            @if(Session::get('fail'))
-                <div class="alert alert-danger">
-                    {{ Session::get('fail') }}
-                </div>
-            @endif
-            @csrf
+        @if(Session::get('success'))
+            <div class="alert alert-success">
+                {{ Session::get('success') }}
+            </div>
+        @endif
+        @csrf
 
-        <div class="input-group mb-3">
+        <div class="form-group mb-3">
+            <label for="email">Email</label>
           <input type="email" class="form-control" name="email" placeholder="Masukan Email" value="{{ old('email') }}">
-          <div class="input-group-append">
-            <div class="input-group-text">
-                <span class="text-danger">@error('email'){{ $message }}@enderror</span>
-                <span class="fas fa-envelope"></span>
-            </div>
-          </div>
+        <div class="input-group-append">
         </div>
-        <div class="input-group mb-3">
-          <input type="password" class="form-control"name="password" placeholder="Masukan kata sandi" value="{{ old('password') }}">
-          <div class="input-group-append">
-            <div class="input-group-text">
-                <span class="text-danger">@error('password'){{ $message }}@enderror</span>
-                <span class="fas fa-lock"></span>
-            </div>
-          </div>
         </div>
+        <span class="text-danger">@error('email'){{ $message }}@enderror</span>
+        
           <!-- /.col -->
           <div class="container px-0">
-            <button type="submit" class="btn btn-primary btn-block">Login</button>
+            <button type="submit" class="btn btn-primary btn-block">Send Reset Password Link</button>
           </div>
           <!-- /.col -->
         </div>
       </form>
+
+      <p class="mb-3 mx-2 px-3">
+        <a href="{{ route('user.login') }}">Login</a>
+      </p>
+    </div>
     <!-- /.login-card-body -->
   </div>
 </div>
