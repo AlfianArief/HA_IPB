@@ -36,7 +36,6 @@ class FormRequestController extends Controller
                     ->join('users','formrequests.id_users','=','users.id')
                     ->select('formrequests.id','formrequests.pindah_cabang','users.name', 'formrequests.status', 'formrequests.id_users')->get();
 
-
         return view('dashboard.admin.anggota.listrequest', compact('checkrequest'));
     }
 

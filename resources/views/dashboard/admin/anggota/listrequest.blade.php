@@ -8,7 +8,7 @@
     <thead >
       <tr class="text-center">
         <th scope="col">No</th>
-        <th scope="col">ID cabang saat ini</th>
+
         <th scope="col">Nama</th>
         <th scope="col">Isi Request</th>
         <th scope="col" >Aksi</th>
@@ -19,7 +19,6 @@
     @foreach ($checkrequest as $check)
       <tr>
         <th scope="row">{{$loop->iteration}}</th>
-        <td>{{$check->id}}</td>
         <td>{{$check->name}}</td>
         <td>{{$check->pindah_cabang}}</td>
         <td>

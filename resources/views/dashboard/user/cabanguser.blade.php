@@ -4,7 +4,7 @@
 @section('content')
 
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 border-bottom">
-  <h3 class="mb-2 mx-4">Daftar Seluruh Cabang Himpunan Alumni IPB</h3>
+  <h3 class="mb-2 mx-4">Cabang Himpunan Alumni IPB</h3>
 </div>
 
 @if ($message = Session::get('success'))
