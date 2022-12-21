@@ -49,11 +49,11 @@
                 </div>
             </div>
 
-            <div class="position-relative">
-                <button type="submit" class="btn btn-primary position-absolute top-50 end-0 translate-middle-y mt-2">Simpan</button>
-            </div>
+        
+            <button type="submit" class="btn btn-primary float-right mt-2">Simpan</button>
+      
 
-            <a class="btn btn-success my-2 mx-4 justify-content-end " href="admin/admin/postcabang" role="button"><i class="bi bi-box-arrow-left"></i> Kembali</a>
+            <a class="btn btn-success my-2 mx-2 float-right" href="admin/admin/postcabang" role="button">Kembali</a>
         </form>
     </div>
 

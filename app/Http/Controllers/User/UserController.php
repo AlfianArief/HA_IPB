@@ -238,6 +238,16 @@ class UserController extends Controller
                     'jurusan' => $request->input('jurusan'),
                     'kode_jurusan' => $request->input('kode_jurusan'),
                     'NIM' => $request->input('NIM'),
+                    'angkatan2' => $request->input('angkatan2'),
+                    'fakultas2' => $request->input('fakultas2'),
+                    'jurusan2' => $request->input('jurusan2'),
+                    'kode_jurusan2' => $request->input('kode_jurusan2'),
+                    'NIM2' => $request->input('NIM2'),
+                    'angkatan3' => $request->input('angkatan3'),
+                    'fakultas3' => $request->input('fakultas3'),
+                    'jurusan3' => $request->input('jurusan3'),
+                    'kode_jurusan3' => $request->input('kode_jurusan3'),
+                    'NIM3' => $request->input('NIM3'),
                 ]);
 
     
@@ -274,6 +284,11 @@ class UserController extends Controller
 
 
         return redirect()->back()->with('status','Profil sudah di perbaharui');
+    }
+
+    public function aboutus()
+    {
+        return view('dashboard.user.aboutus');
     }
 
 }

@@ -12,7 +12,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <base href="{{ \URL::to('/') }}">
 
   <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="{{ url('https://fonts.googleapis.com/css2?family=Poppins&display=swap') }}" rel="stylesheet">
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   
@@ -45,11 +47,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #192f59;">
     <!-- Brand Logo -->
     <a href="{{ \URL::to('admin/pengumuman') }}" class="brand-link">
-      <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">Himpunan Alumni IPB</span>
+      
+      <span class="brand-text font-weight-dark mx-4">Himpunan Alumni IPB</span>
     </a>
 
     <!-- Sidebar -->
@@ -93,6 +95,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
           </li>
+          <li class="nav-item border-top mr-1">
+            <a href="{{ route('admin.aboutus') }}" class="nav-link">
+              <i class="fa fa-info-circle fa-lg mr-2" aria-hidden="true"></i>
+              <p>
+                About Us
+              </p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -119,7 +129,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Main Footer -->
   <footer class="main-footer">
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2022 HA IPB</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2022 HA IPB</a>.</strong>
   </footer>
 </div>
 <!-- ./wrapper -->

@@ -7,6 +7,7 @@ use App\Http\Controllers\CabangController;
 use App\Http\Controllers\UserCabangController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\FormRequestController;
 
 
 
@@ -47,7 +48,7 @@ Auth::routes();
 
     Route::middleware(['auth:web','PreventBackHistory'])->group(function(){
         Route::view('/home','dashboard.user.home')->name('home');
-        //Route::view('/welcome','dashboard.user.dashboard')->name('dashboard');
+        Route::get('/aboutus', '\App\Http\Controllers\User\UserController@aboutus' )->name('aboutus');
         Route::get('/profile','\App\Http\Controllers\User\UserController@profile')->name('profile');
         Route::post('/logout',[UserController::class,'logout'])->name('logout');
 
@@ -59,6 +60,10 @@ Auth::routes();
         Route::post('/organization','\App\Http\Controllers\User\UserController@organizationupdate')->name('organization');
 
         Route::get('cabang/{id}', '\App\Http\Controllers\UserCabangController@cabang')->name('cabang');
+        Route::get('/request', '\App\Http\Controllers\FormRequestController@showformrequests')->name('showform');
+        Route::post('/request', '\App\Http\Controllers\FormRequestController@formrequests')->name('formrequests');
+        Route::get('/historyrequest', '\App\Http\Controllers\FormRequestController@historyrequests')->name('historyrequests');
+        
 
         Route::resource('/', '\App\Http\Controllers\UserCabangController');
 
@@ -76,7 +81,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
     Route::middleware(['auth:admin','PreventBackHistory'])->group(function(){
         Route::view('/home','dashboard.admin.home')->name('home');
         Route::post('/logout',[AdminController::class,'logout'])->name('logout');
-        //Route::view('/welcome','dashboard.admin.dashboard')->name('dashboard');
+        Route::get('/aboutus', '\App\Http\Controllers\Admin\AdminController@aboutus' )->name('aboutus');
         Route::post('/admincabanghimpunan/{id}','\App\Http\Controllers\UserCabangController@admincabang' )->name('admincabanghimpunan');
 
         Route::resource('admin/postcabang', '\App\Http\Controllers\CabangController');
@@ -86,6 +91,10 @@ Route::prefix('admin')->name('admin.')->group(function(){
         Route::get('/anggota','\App\Http\Controllers\UserCabangController@list')->name('list');
         Route::get('/mutasi/{id}', '\App\Http\Controllers\UserCabangController@mutasi')->name('mutasi');
         Route::put('/mutasi/{id}', '\App\Http\Controllers\UserCabangController@updateanggota')->name('update');
+
+        Route::get('/request/{id}', '\App\Http\Controllers\FormRequestController@checkrequests')->name('checkrequests');
+        Route::put('/approve/{id}', '\App\Http\Controllers\FormRequestController@approverequests')->name('approve');
+        Route::put('/reject/{id}', '\App\Http\Controllers\FormRequestController@rejectrequests')->name('reject');
     });
 });
 

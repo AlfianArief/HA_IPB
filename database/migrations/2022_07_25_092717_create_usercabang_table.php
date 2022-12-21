@@ -22,8 +22,8 @@ class CreateUserCabangTable extends Migration
             $table->boolean('status')->default(1);
 
 
-           $table->foreign('id_cabang')->references('id')->on('cabangs')->onDelete('cascade');
-           $table->foreign('id_users')->references('id')->on('users')->onDelete('cascade');
+           $table->foreign('id_cabang')->references('id')->on('cabangs')->onDelete('cascade')->onUpdate('cascade');
+           $table->foreign('id_users')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

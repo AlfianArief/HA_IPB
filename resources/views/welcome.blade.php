@@ -25,7 +25,7 @@
         </style>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg" style="background-color: #1F4690;">
+        <nav class="navbar navbar-expand-lg" style="background-color: #192f59;">
             <div class="container">
                 <a class="navbar-brand text-light" href="#">Himpunan Alumni IPB</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,7 +35,7 @@
                  @if (Route::has('user.login'))
                     <div class="hidden ms-auto top-0 py-3 sm:block">
                         @auth
-                            <a href="{{ url('/home') }}" class="text-xl text-black-700 underline">Home</a>
+                            <button href="{{ url('/home') }}" class="text-xl text-black-700 underline">Home</button>
                          @else
                             <a href="{{ route('user.login') }}" class="text-xl text-light text-uppercase text-black-700">Log in</a>
 

@@ -20,10 +20,20 @@ class CreateEducationTable extends Migration
             $table->string('jurusan')->nullable();
             $table->string('kode_jurusan')->nullable();
             $table->string('NIM')->unique()->nullable();
+            $table->string('angkatan2')->nullable();
+            $table->string('fakultas2')->nullable();
+            $table->string('jurusan2')->nullable();
+            $table->string('kode_jurusan2')->nullable();
+            $table->string('NIM2')->unique()->nullable();
+            $table->string('angkatan3')->nullable();
+            $table->string('fakultas3')->nullable();
+            $table->string('jurusan3')->nullable();
+            $table->string('kode_jurusan3')->nullable();
+            $table->string('NIM3')->unique()->nullable();
             $table->unsignedBigInteger('user_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

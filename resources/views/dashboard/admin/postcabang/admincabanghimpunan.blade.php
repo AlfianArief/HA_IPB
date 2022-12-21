@@ -4,7 +4,7 @@
 @section('content')
 
 <div class="box">
-  <table class="table table-bordered container">
+  <table class="table table-striped container">
     <thead>
       <tr>
         <th scope="col">No</th>

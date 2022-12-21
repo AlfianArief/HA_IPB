@@ -7,9 +7,10 @@ use App\Models\Cabang;
 use App\Models\User;
 use App\Models\Admin;
 use App\Models\UserCabang;
+use App\Models\FormRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Controller;
+
 
 class UserCabangController extends Controller
 {
@@ -158,8 +159,9 @@ class UserCabangController extends Controller
                     ->join('users', 'usercabangs.id_users', '=', 'users.id')
                     ->join('cabangs','usercabangs.id_cabang','=','cabangs.id')
 
-                    ->select('usercabangs.id', 'usercabangs.created_at', 'users.name', 'cabangs.judul',
+                    ->select('usercabangs.id', 'usercabangs.id_users', 'usercabangs.created_at', 'users.name', 'cabangs.judul',
                     'users.email')->get();
+
         return view('dashboard.admin.anggota.list', compact('listanggota'));
     }
 
@@ -170,7 +172,7 @@ class UserCabangController extends Controller
                     ->join('cabangs','usercabangs.id_cabang','=','cabangs.id')
 
                     ->select('usercabangs.id', 'usercabangs.created_at', 'users.name','usercabangs.id_cabang', 'cabangs.judul',
-                    'users.email')->get();
+                    'users.email', 'usercabangs.id_users')->get();
 
         $listcabang = Cabang::all(); 
         return view('dashboard.admin.anggota.mutasi', compact('editanggota','listcabang'));
@@ -182,7 +184,7 @@ class UserCabangController extends Controller
             'cabang' => 'required|numeric',
         ]);
 
-        $cabanglama = Usercabang::where('id', $id)
+        $cabanglama = Usercabang::where('id_users', $id)
                 ->select('status', 1);
                 
         $cabanglama->update([
@@ -192,10 +194,10 @@ class UserCabangController extends Controller
         UserCabang::create([
             'id_cabang' => $request->input('cabang'),
             'id_users' => $id,
-            'aktif' => true,
+            'status' => true,
         ]);
-
+           
         return redirect()->route('admin.list')->with('success', 'Anggota telah dimutasi');
-       
+        
     }
 }

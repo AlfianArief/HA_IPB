@@ -65,6 +65,10 @@ class User extends Authenticatable
         return $this->hasMany(UserCabang::class);
     }
 
+    public function request(){
+        return $this->hasMany(FormRequest::class);
+    }
+
     public function education(){
         return $this->hasOne(Education::class);
     }

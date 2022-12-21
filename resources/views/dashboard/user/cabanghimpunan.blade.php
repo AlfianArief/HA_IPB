@@ -3,6 +3,9 @@
 
 @section('content')
 
+
+
+
 <div class="box border-bottom">
   <table class="table table-striped container">
     <thead>
@@ -29,6 +32,8 @@
     </tbody>
   </table>
 </div>
-<a class="btn btn-success my-2 mx-4" href="{{ route('user.index')}}" role="button"> Kembali</a>
+<a class="btn btn-primary my-2 mr-4 float-right" href="{{ route('user.showform')}}" role="button">Pindah cabang</a>
+<a class="btn btn-success my-2 mx-2 float-right" href="{{ route('user.index')}}" role="button"> Kembali</a>
+
 
 @endsection

@@ -17,6 +17,16 @@ class Education extends Model
         'jurusan',
         'kode_jurusan',
         'NIM',
+        'angkatan2',
+        'fakultas2',
+        'jurusan2',
+        'kode_jurusan2',
+        'NIM2',
+        'angkatan2',
+        'fakultas2',
+        'jurusan2',
+        'kode_jurusan2',
+        'NIM2',
         'user_id',
     ];
 

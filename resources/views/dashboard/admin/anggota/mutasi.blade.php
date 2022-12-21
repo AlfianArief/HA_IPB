@@ -20,7 +20,7 @@
 @foreach ($editanggota as $edit)
 
     <div class="card-body">
-        <form class="form-horizontal" method="POST" action=" admin/mutasi/{{ $edit->id }}"  enctype="multipart/form-data">
+        <form class="form-horizontal" method="POST" action=" admin/mutasi/{{ $edit->id_users }}"  enctype="multipart/form-data">
         @csrf
         @method ('PUT')
 

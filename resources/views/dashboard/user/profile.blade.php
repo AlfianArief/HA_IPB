@@ -4,6 +4,12 @@
 @section('content')
 
  <!-- Content Header (Page header) -->
+ @if ($message = Session::get('status'))
+  <div class="alert alert-success">
+    <p>{{ $message }}</p>
+  </div>
+@endif
+
  <section class="content-header">
         <div class="container-fluid">
           <div class="row mb-2">
@@ -127,8 +133,8 @@
                               <label class="form-check-label px-auto">O</label>
                             </div>
                             <div class="form-check form-check-inline">
-                              <input class="form-check-input" type="radio" name="golongandarah" value="-" {{ old('jeniskelamin') == '-' ? 'checked':''}}>
-                              <label class="form-check-label px-auto">-</label>
+                              <input class="form-check-input" type="radio" name="golongandarah" value="Belum tahu" {{ old('jeniskelamin') ==  'Belum tahu' ? 'checked':''}}>
+                              <label class="form-check-label px-auto">Belum tahu</label>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -175,7 +181,7 @@
                         </div>
                         <div class="form-group row">
                           <div class="offset-sm-2 col-sm-10">
-                            <button type="submit" class="btn btn-primary">Simpan</button>
+                            <button type="submit" class="btn btn-primary float-right">Simpan</button>
                           </div>
                         </div>
                       </form>
@@ -185,23 +191,23 @@
                       <form class="form-horizontal" method="POST" action="user/education">
                         {{  csrf_field() }}
 
-
+                        <h4>Form S1</h4>
+                        <div class="form-group row">
+                          <label for="inputJurusan" class="col-sm-2 col-form-label">Program studi</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputJurusan" placeholder="*Contoh : S1" value="{{ $education->jurusan }}" name="jurusan">                            
+                          </div>
+                        </div>
                         <div class="form-group row">
                           <label for="inputAngkatan" class="col-sm-2 col-form-label">Angkatan</label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputAngkatan" placeholder="Angkatan" value="{{ $education->angkatan }}" name="angkatan">
+                            <input type="text" class="form-control" id="inputAngkatan" placeholder="*Contoh : 1999/2000" value="{{ $education->angkatan }}" name="angkatan">
                           </div>
                         </div>
                         <div class="form-group row">
                           <label for="inputFakultas" class="col-sm-2 col-form-label">Fakultas</label>
                           <div class="col-sm-10">
                             <input type="text" class="form-control" id="inputFakultas" placeholder="Fakultas" value="{{ $education->fakultas }}" name="fakultas">                            
-                          </div>
-                        </div>
-                        <div class="form-group row">
-                          <label for="inputJurusan" class="col-sm-2 col-form-label">Program studi</label>
-                          <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputJurusan" placeholder="Jurusan" value="{{ $education->jurusan }}" name="jurusan">                            
                           </div>
                         </div>
                         <div class="form-group row">
@@ -214,6 +220,70 @@
                           <label for="inputNIM" class="col-sm-2 col-form-label">NIM</label>
                           <div class="col-sm-10">
                             <input type="text" class="form-control" id="inputNIM" placeholder="NIM" value="{{ $education->NIM}}" name="NIM">
+                          </div>
+                        </div>
+
+                        <h4 class="border-top">Form S2</h4>
+                        <div class="form-group row">
+                          <label for="inputJurusan" class="col-sm-2 col-form-label">Program studi</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputJurusan" placeholder="*Contoh : S2" value="{{ $education->jurusan2 }}" name="jurusan2">                            
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="inputAngkatan" class="col-sm-2 col-form-label">Angkatan</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputAngkatan" placeholder="Contoh : 2000/2001" value="{{ $education->angkatan2 }}" name="angkata2n">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="inputFakultas" class="col-sm-2 col-form-label">Fakultas</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputFakultas" placeholder="Fakultas" value="{{ $education->fakultas2 }}" name="fakultas2">                            
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="inputKodeJurusan" class="col-sm-2 col-form-label">Kode Jurusan</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputKodeJurusan" placeholder="Kode Jurusan" value="{{ $education->kode_jurusan2 }}" name="kode_jurusan2">                            
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="inputNIM" class="col-sm-2 col-form-label">NIM</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputNIM" placeholder="NIM" value="{{ $education->NIM2 }}" name="NIM2">
+                          </div>
+                        </div>
+
+                        <h4 class="border-top">Form S3</h4>
+                        <div class="form-group row">
+                          <label for="inputJurusan" class="col-sm-2 col-form-label">Program studi</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputJurusan" placeholder="*Contoh : S3" value="{{ $education->jurusan3 }}" name="jurusan3">                            
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="inputAngkatan" class="col-sm-2 col-form-label">Angkatan</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputAngkatan" placeholder="*Contoh : 2000/2001" value="{{ $education->angkatan3 }}" name="angkatan3">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="inputFakultas" class="col-sm-2 col-form-label">Fakultas</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputFakultas" placeholder="Fakultas" value="{{ $education->fakultas3 }}" name="fakultas3">                            
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="inputKodeJurusan" class="col-sm-2 col-form-label">Kode Jurusan</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputKodeJurusan" placeholder="Kode Jurusan3" value="{{ $education->kode_jurusan3 }}" name="kode_jurusan3">                            
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="inputNIM" class="col-sm-2 col-form-label">NIM</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputNIM" placeholder="NIM3" value="{{ $education->NIM3 }}" name="NIM3">
                           </div>
                         </div>
                         <div class="form-group row">
@@ -298,7 +368,6 @@
                         </div>
                       </form>
                     </div>
-
 
                     <!-- /.tab-pane -->
                     <div class="tab-pane" id="change_password">
