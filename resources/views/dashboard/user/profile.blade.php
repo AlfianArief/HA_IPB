@@ -60,8 +60,6 @@
                     <li class="nav-item"><a class="nav-link" href="#pendidikan" data-toggle="tab">Riwayat Pendidikan</a></li>
                     <li class="nav-item"><a class="nav-link" href="#pekerjaan" data-toggle="tab">Pekerjaan</a></li>
                     <li class="nav-item"><a class="nav-link" href="#organisasi" data-toggle="tab">Organisasi</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#change_password" data-toggle="tab">Ganti Password</a></li>                    
-                  </ul>
                 </div><!-- /.card-header -->
                 <div class="card-body">
                   <div class="tab-content">
@@ -106,11 +104,11 @@
                         <div class="form-group row">
                           <label for="inputJk" class="col-sm-2 col-form-label">Jenis Kelamin</label>
                             <div class="form-check form-check-inline pl-2">
-                              <input class="form-check-input" type="radio" name="jeniskelamin" value="Pria" {{ old('jeniskelamin') == 'Pria' ? 'checked':''}}>
+                              <input class="form-check-input" type="radio" name="jeniskelamin" value="Pria" checked="{{ Auth::user()->jeniskelamin == 'Pria' ? 'true':'false'}}">
                               <label class="form-check-label px-auto">Pria</label>
                             </div>
                             <div class="form-check form-check-inline">
-                              <input class="form-check-input" type="radio" name="jeniskelamin" value="Wanita" {{ old('jeniskelamin') == 'Wanita' ? 'checked':''}}>
+                              <input class="form-check-input" type="radio" name="jeniskelamin" value="Wanita" checked="{{ Auth::user()->jeniskelamin == 'Wanita' ? 'true':'false'}}">
                               <label class="form-check-label px-auto">Wanita</label>
                             </div>
                         </div>
@@ -195,7 +193,7 @@
                         <div class="form-group row">
                           <label for="inputJurusan" class="col-sm-2 col-form-label">Program studi</label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputJurusan" placeholder="*Contoh : S1" value="{{ $education->jurusan }}" name="jurusan">                            
+                            <input type="text" class="form-control" id="inputJurusan" placeholder="*Contoh : S1-Ilmu Komputer" value="{{ $education->jurusan }}" name="jurusan">                            
                           </div>
                         </div>
                         <div class="form-group row">
@@ -207,19 +205,19 @@
                         <div class="form-group row">
                           <label for="inputFakultas" class="col-sm-2 col-form-label">Fakultas</label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputFakultas" placeholder="Fakultas" value="{{ $education->fakultas }}" name="fakultas">                            
+                            <input type="text" class="form-control" id="inputFakultas" placeholder="*Contoh : FMIPA" value="{{ $education->fakultas }}" name="fakultas">                            
                           </div>
                         </div>
                         <div class="form-group row">
                           <label for="inputKodeJurusan" class="col-sm-2 col-form-label">Kode Jurusan</label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputKodeJurusan" placeholder="Kode Jurusan" value="{{ $education->kode_jurusan }}" name="kode_jurusan">                            
+                            <input type="text" class="form-control" id="inputKodeJurusan" placeholder="*Contoh : G6" value="{{ $education->kode_jurusan }}" name="kode_jurusan">                            
                           </div>
                         </div>
                         <div class="form-group row">
                           <label for="inputNIM" class="col-sm-2 col-form-label">NIM</label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputNIM" placeholder="NIM" value="{{ $education->NIM}}" name="NIM">
+                            <input type="text" class="form-control" id="inputNIM" placeholder="*Contoh : G641XXX" value="{{ $education->NIM}}" name="NIM">
                           </div>
                         </div>
 
@@ -227,7 +225,7 @@
                         <div class="form-group row">
                           <label for="inputJurusan" class="col-sm-2 col-form-label">Program studi</label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputJurusan" placeholder="*Contoh : S2" value="{{ $education->jurusan2 }}" name="jurusan2">                            
+                            <input type="text" class="form-control" id="inputJurusan" placeholder="*Contoh : S2-Ilmu Komputer" value="{{ $education->jurusan2 }}" name="jurusan2">                            
                           </div>
                         </div>
                         <div class="form-group row">
@@ -239,19 +237,19 @@
                         <div class="form-group row">
                           <label for="inputFakultas" class="col-sm-2 col-form-label">Fakultas</label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputFakultas" placeholder="Fakultas" value="{{ $education->fakultas2 }}" name="fakultas2">                            
+                            <input type="text" class="form-control" id="inputFakultas" placeholder="*Contoh : FMIPA" value="{{ $education->fakultas2 }}" name="fakultas2">                            
                           </div>
                         </div>
                         <div class="form-group row">
                           <label for="inputKodeJurusan" class="col-sm-2 col-form-label">Kode Jurusan</label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputKodeJurusan" placeholder="Kode Jurusan" value="{{ $education->kode_jurusan2 }}" name="kode_jurusan2">                            
+                            <input type="text" class="form-control" id="inputKodeJurusan" placeholder="*Contoh : G6" value="{{ $education->kode_jurusan2 }}" name="kode_jurusan2">                            
                           </div>
                         </div>
                         <div class="form-group row">
                           <label for="inputNIM" class="col-sm-2 col-form-label">NIM</label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputNIM" placeholder="NIM" value="{{ $education->NIM2 }}" name="NIM2">
+                            <input type="text" class="form-control" id="inputNIM" placeholder="*Contoh : A24XXX" value="{{ $education->NIM2 }}" name="NIM2">
                           </div>
                         </div>
 
@@ -259,7 +257,7 @@
                         <div class="form-group row">
                           <label for="inputJurusan" class="col-sm-2 col-form-label">Program studi</label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputJurusan" placeholder="*Contoh : S3" value="{{ $education->jurusan3 }}" name="jurusan3">                            
+                            <input type="text" class="form-control" id="inputJurusan" placeholder="*Contoh : S3-Ilmu Komputer" value="{{ $education->jurusan3 }}" name="jurusan3">                            
                           </div>
                         </div>
                         <div class="form-group row">
@@ -271,24 +269,24 @@
                         <div class="form-group row">
                           <label for="inputFakultas" class="col-sm-2 col-form-label">Fakultas</label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputFakultas" placeholder="Fakultas" value="{{ $education->fakultas3 }}" name="fakultas3">                            
+                            <input type="text" class="form-control" id="inputFakultas" placeholder="*Contoh : FMIPA" value="{{ $education->fakultas3 }}" name="fakultas3">                            
                           </div>
                         </div>
                         <div class="form-group row">
                           <label for="inputKodeJurusan" class="col-sm-2 col-form-label">Kode Jurusan</label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputKodeJurusan" placeholder="Kode Jurusan3" value="{{ $education->kode_jurusan3 }}" name="kode_jurusan3">                            
+                            <input type="text" class="form-control" id="inputKodeJurusan" placeholder="*Contoh : A2" value="{{ $education->kode_jurusan3 }}" name="kode_jurusan3">                            
                           </div>
                         </div>
                         <div class="form-group row">
                           <label for="inputNIM" class="col-sm-2 col-form-label">NIM</label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputNIM" placeholder="NIM3" value="{{ $education->NIM3 }}" name="NIM3">
+                            <input type="text" class="form-control" id="inputNIM" placeholder="*Contoh : B34XXXX" value="{{ $education->NIM3 }}" name="NIM3">
                           </div>
                         </div>
                         <div class="form-group row">
                           <div class="offset-sm-2 col-sm-10">
-                            <button type="submit" class="btn btn-primary">Simpan</button>
+                            <button type="submit" class="btn btn-primary float-right">Simpan</button>
                           </div>
                         </div>
                       </form>
@@ -331,7 +329,7 @@
                         </div>
                         <div class="form-group row">
                           <div class="offset-sm-2 col-sm-10">
-                            <button type="submit" class="btn btn-primary">Simpan</button>
+                            <button type="submit" class="btn btn-primary float-right">Simpan</button>
                           </div>
                         </div>
                       </form>
@@ -363,55 +361,14 @@
                         </div>
                         <div class="form-group row">
                           <div class="offset-sm-2 col-sm-10">
-                            <button type="submit" class="btn btn-primary">Simpan</button>
+                            <button type="submit" class="btn btn-primary float-right">Simpan</button>
                           </div>
                         </div>
                       </form>
                     </div>
 
                     <!-- /.tab-pane -->
-                    <div class="tab-pane" id="change_password">
-                        <form class="form-horizontal" action="{{ route('user.change-password') }}" method="POST" id="changePasswordAdminForm">
-                        @if(Session::get('success'))
-                        <div class="alert alert-success">
-                            {{ Session::get('success') }}
-                        </div>
-                        @endif
-                        @if(Session::get('failed'))
-                        <div class="alert alert-danger">
-                            {{ Session::get('failed') }}
-                        </div>
-                        @endif
-                        @csrf
-                          <div class="form-group row">
-                            <label for="inputName" class="col-sm-2 col-form-label">Password Lama</label>
-                            <div class="col-sm-10">
-                              <input type="password" class="form-control" id="inputName" placeholder="Masukkan Password Saat Ini" name="oldpassword">
-                              <span class="text-danger error-text oldpassword_error"></span>
-                            </div>
-                          </div>
-                          <div class="form-group row">
-                            <label for="inputName2" class="col-sm-2 col-form-label">Password Baru</label>
-                            <div class="col-sm-10">
-                              <input type="password" class="form-control @error('newpassword') is-invalid @enderror" id="newpassword" placeholder="Masukkan Password Baru" name="newpassword">
-                              @error ('newpassword') <div class="invalid-feedback">{{ $message }}</div>@enderror
-                              
-                            </div>
-                          </div>
-                          <div class="form-group row">
-                            <label for="inputName2" class="col-sm-2 col-form-label">Konfirmasi Password Baru</label>
-                            <div class="col-sm-10">
-                              <input type="password" class="form-control " id="cnewpassword" placeholder="Konfirmasi Password Baru" name="newpassword_confirmation">
-                              <span class="text-danger error-text cnewpassword_error"></span>
-                            </div>
-                          </div>
-                          <div class="form-group row">
-                            <div class="offset-sm-2 col-sm-10">
-                              <button type="submit" class="btn btn-danger">Update Password</button>
-                            </div>
-                          </div>
-                        </form>
-                      </div>
+                    
                   </div>
                   <!-- /.tab-content -->
                 </div><!-- /.card-body -->
