@@ -18,7 +18,7 @@
 <body class="hold-transition register-page">
 <div class="register-box">
   <div class="register-logo">
-    <b>HIMPUNAN ALUMNI</b>IPB
+    <b>HIMPUNAN ALUMNI IPB</b>
   </div>
 
   <div class="card">
